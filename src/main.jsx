@@ -8,7 +8,7 @@ import App from './app';
 // ----------------------------------------------------------------------
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
+// testing purpose to be removed
 root.render(
   <HelmetProvider>
     <BrowserRouter>
