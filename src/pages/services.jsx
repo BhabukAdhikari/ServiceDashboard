@@ -1,17 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 
-import { UserView } from 'src/sections/user/view';
+import { ServiceView } from 'src/sections/services/view';
+
 
 // ----------------------------------------------------------------------
 
-export default function UserPage() {
+export default function ServicePage() {
   return (
     <>
       <Helmet>
-        <title> User | Minimal UI </title>
+        <title> Services</title>
       </Helmet>
 
-      <UserView />
+      <ServiceView />
     </>
   );
 }

@@ -23,6 +23,11 @@ const LANGS = [
     label: 'French',
     icon: '/assets/icons/ic_flag_fr.svg',
   },
+  {
+    value: 'ne',
+    label: 'Nepal',
+    icon: '/assets/icons/ic_flag_np.svg',
+  },
 ];
 
 // ----------------------------------------------------------------------
