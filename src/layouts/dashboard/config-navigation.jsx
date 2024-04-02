@@ -1,4 +1,7 @@
+// import {CleaningServicesIcon} from '@mui/icons-material/CleaningServices';
+
 import SvgColor from 'src/components/svg-color';
+
 
 // ----------------------------------------------------------------------
 
@@ -18,6 +21,17 @@ const navConfig = [
     icon: icon('ic_user'),
   },
   {
+    title: 'services',
+    path: '/services',
+    icon: icon('ic_blog'),
+    // icon: <CleaningServicesIcon />,
+  },
+  {
+    title: 'category',
+    path: '/category',
+    icon: icon('ic_user'),
+  },
+  {
     title: 'product',
     path: '/products',
     icon: icon('ic_cart'),
@@ -30,6 +44,11 @@ const navConfig = [
   {
     title: 'login',
     path: '/login',
+    icon: icon('ic_lock'),
+  },
+  {
+    title: 'sign-up',
+    path: '/sign-up',
     icon: icon('ic_lock'),
   },
   {
