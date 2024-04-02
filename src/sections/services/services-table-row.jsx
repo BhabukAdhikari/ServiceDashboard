@@ -11,19 +11,14 @@ import TableCell from '@mui/material/TableCell';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
-import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function UserTableRow({
+export default function ServiceTableRow({
   selected,
-  name,
+  servicename,
   avatarUrl,
-  company,
-  role,
-  isVerified,
-  status,
   handleClick,
 }) {
   const [open, setOpen] = useState(null);
@@ -45,23 +40,12 @@ export default function UserTableRow({
 
         <TableCell component="th" scope="row" padding="none">
           <Stack direction="row" alignItems="center" spacing={2}>
-            <Avatar alt={name} src={avatarUrl} />
+            <Avatar src={avatarUrl} />
             <Typography variant="subtitle2" noWrap>
-              {name}
+              {servicename}
             </Typography>
           </Stack>
         </TableCell>
-
-        <TableCell>{company}</TableCell>
-
-        <TableCell>{role}</TableCell>
-
-        <TableCell align="center">{isVerified ? 'Yes' : 'No'}</TableCell>
-
-        <TableCell>
-          <Label color={(status === 'banned' && 'error') || 'success'}>{status}</Label>
-        </TableCell>
-
         <TableCell align="right">
           <IconButton onClick={handleOpenMenu}>
             <Iconify icon="eva:more-vertical-fill" />
@@ -93,13 +77,9 @@ export default function UserTableRow({
   );
 }
 
-UserTableRow.propTypes = {
+ServiceTableRow.propTypes = {
   avatarUrl: PropTypes.any,
-  company: PropTypes.any,
   handleClick: PropTypes.func,
-  isVerified: PropTypes.any,
-  name: PropTypes.any,
-  role: PropTypes.any,
+  servicename: PropTypes.any,
   selected: PropTypes.any,
-  status: PropTypes.string,
 };
