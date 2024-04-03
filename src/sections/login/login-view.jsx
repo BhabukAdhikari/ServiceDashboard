@@ -89,7 +89,6 @@ export default function LoginView() {
               type="submit"
               variant="contained"
               color="inherit"
-            // onClick={handleClick}
             >
               Login
             </LoadingButton>

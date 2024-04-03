@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { api } from 'src/setup/api';
 
@@ -26,6 +27,7 @@ export default function useLogin() {
       if (token) {
         setLocalStorage('token', token);
         location.reload();
+        toast.success('Logged in sucessfully!!')
         navigate('/');
       } else {
         console.log('Token not found in response');
