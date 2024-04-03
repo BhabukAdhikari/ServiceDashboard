@@ -4,8 +4,13 @@ export const setLocalStorage = (key, value) => {
 }
 
 export const getLocalStorage = (key) => {
-    const data = localStorage.getItem(key);
-    return JSON.parse(data);
+    try{
+        const data = localStorage.getItem(key);
+        return JSON.parse(data);
+    }
+    catch (err) {
+        return null;
+    }
 }
 
 export const setRemoteStorage = (key) => {

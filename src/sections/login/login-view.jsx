@@ -49,24 +49,18 @@ export default function LoginView() {
             maxWidth: 420,
           }}
         >
-          <Typography variant="h4">Log in to Minimal</Typography>
-          <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-            Don’t have an account?
-            <Link variant="subtitle2" sx={{ ml: 0.5 }} to=''>
-              SignUp
-            </Link>
-          </Typography>
+          <Typography variant="h4">Log in to Service-Chaiyo</Typography>
           <Stack direction="row" spacing={2}>
-            {/* Buttons for social login */}
+            <Divider />
           </Stack>
           <Divider sx={{ my: 3 }}>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            {/* <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               OR
-            </Typography>
+            </Typography> */}
           </Divider>
           <form onSubmit={handleFormSubmit}>
             <Stack spacing={3}>
-              <TextField name="email" label="Email address" value={email} onChange={handleEmail} />
+              <TextField name="email" label="Email address" value={email} onChange={handleEmail} required />
               <TextField
                 name="password"
                 label="Password"

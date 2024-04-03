@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { setLocalStorage } from 'src/utils/local-storage';
-
 import { api } from 'src/setup/api';
 
+import { setLocalStorage } from 'src/utils/local-storage';
 
 export default function useLogin() {
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ export default function useLogin() {
       const token = res?.data?.token;
       if (token) {
         setLocalStorage('token', token);
-        console.log(token);
+        location.reload();
         navigate('/');
       } else {
         console.log('Token not found in response');

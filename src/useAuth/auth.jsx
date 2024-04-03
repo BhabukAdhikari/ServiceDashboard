@@ -1,23 +1,27 @@
-import { useNavigate } from "react-router-dom";
 import { useState, useContext, createContext } from "react"
+import Toast from "src/toast/toast";
 
-import { getLocalStorage } from "src/utils/local-storage";
+import { getLocalStorage, setRemoteStorage } from "src/utils/local-storage";
 
 export const AuthContext = createContext();
 /* eslint-disable */
 export const AuthProvider = ({ children }) => {
-    const navigate = useNavigate();
-    const [token, setToken] = useState(getLocalStorage('token'));
+    const [token, setToken] = useState(getLocalStorage('token') ?? null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     /* eslint-disable */
     const handleLogin = (token) => {
         setToken(token);
         setIsAuthenticated(true);
+        if (setIsAuthenticated === true) {
+            return <Toast />
+        }
+        location.reload();
     }
     const handleLogout = () => {
-        setToken(null);
+        console.log("logout");
+        setRemoteStorage('token', null)
         setIsAuthenticated(false);
-        navigate('/login')
+        location.reload();
     }
 
     return (
