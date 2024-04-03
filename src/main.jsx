@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */
 import { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';

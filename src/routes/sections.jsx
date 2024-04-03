@@ -1,59 +1,32 @@
+/* eslint no-use-before-define: 0 */
 import { lazy, Suspense, useEffect } from 'react';
 import { Outlet, Navigate, useRoutes, useNavigate } from 'react-router-dom';
 
-import { getLocalStorage } from 'src/utils/local-storage'; 
 
-import { useAuth } from 'src/useAuth/auth'; 
+import { useAuth } from 'src/useAuth/auth';
 import ServicePage from 'src/pages/services';
-
 import DashboardLayout from 'src/layouts/dashboard';
-// import { Protected } from './components/protected';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
-export const UserPage = lazy(() => import('src/pages/user'));
 export const CategoryPage = lazy(() => import('src/pages/category'));
-
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
-
-// ----------------------------------------------------------------------
 
 export default function Router() {
   const { token } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedToken = getLocalStorage('token')
-    if (!token && !storedToken) {
+    if (!token) {
       navigate('/login')
     } else {
       navigate('/')
     }
-  }, [token, navigate])
+  }, [token])
 
-  const routes = useRoutes([
-    {
-      element: (
-        // <Routes>
-        // <Route element={<Protected />} >
-        <DashboardLayout>
-          <Suspense>
-            <Outlet />
-          </Suspense>
-        </DashboardLayout>
-        // </Route>
-        // </Routes>
-      ),
-      children: [
-        { element: <IndexPage />, index: true },
-        { path: 'services', element: <ServicePage /> },
-        { path: 'products', element: <ProductsPage /> },
-        { path: 'blog', element: <BlogPage /> },
-        { path: 'category', element: <CategoryPage /> },
-      ],
-    },
+  const publicRoutes = [
     {
       path: 'login',
       element: <LoginPage />,
@@ -64,14 +37,30 @@ export default function Router() {
     },
     {
       path: '*',
-      element: <Navigate to="/404" replace />,
+      element: <Navigate to="/404" />,
     },
-  ]);
+  ];
+
+  const privateRoutes = [
+    {
+      element: (
+        <DashboardLayout>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
+        </DashboardLayout>
+      ),
+      children: [
+        { element: <IndexPage />, index: true },
+        { path: 'services', element: <ServicePage /> },
+        { path: 'products', element: <ProductsPage /> },
+        { path: 'blog', element: <BlogPage /> },
+        { path: 'category', element: <CategoryPage /> },
+      ],
+    }
+  ];
+
+  const routes = useRoutes(token ? privateRoutes : publicRoutes);
 
   return routes;
 }
-
-
-// const Index = () => {
-//   <RouterProvider router={router} />
-// }

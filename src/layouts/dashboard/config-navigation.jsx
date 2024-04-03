@@ -2,7 +2,6 @@
 
 import SvgColor from 'src/components/svg-color';
 
-
 // ----------------------------------------------------------------------
 
 const icon = (name) => (
@@ -19,12 +18,6 @@ const navConfig = [
     title: 'services',
     path: '/services',
     icon: icon('ic_user'),
-  },
-  {
-    title: 'services',
-    path: '/services',
-    icon: icon('ic_blog'),
-    // icon: <CleaningServicesIcon />,
   },
   {
     title: 'category',
@@ -44,11 +37,6 @@ const navConfig = [
   {
     title: 'login',
     path: '/login',
-    icon: icon('ic_lock'),
-  },
-  {
-    title: 'sign-up',
-    path: '/sign-up',
     icon: icon('ic_lock'),
   },
   {
