@@ -190,7 +190,7 @@ export default function ServicePage() {
                   height={77}
                   emptyRows={emptyRows(page, rowsPerPage, services.length)}
                 />
-                {/* {notFound && <TableNoData query={filterName} />} */}
+                {notFound && <TableNoData query={filterName} />}
               </TableBody>
             </Table>
           </TableContainer>
