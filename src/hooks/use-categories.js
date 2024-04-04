@@ -36,13 +36,12 @@ export const useUpdateStatus = () => {
   });
 };
 
-
 export const useDeleteStatus = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-      mutationFn: async (id) => await api.delete(`/category/${id}`),
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ['categories'] });
-      },
-    });
-  };
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id) => await api.delete(`/category/${id}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['categories'] });
+    },
+  });
+};

@@ -1,5 +1,3 @@
-/* eslint no-use-before-define: 0 */ // --> OFF
-
 import { IoIosAdd } from 'react-icons/io';
 import React, { useState, useEffect } from 'react';
 
@@ -22,12 +20,12 @@ import {
   Badge,
 } from '@mui/material';
 
-import label from 'src/components/label';
 import { useCategories, useCreateCategory, useUpdateStatus } from 'src/hooks/use-categories';
 import { toast } from 'react-toastify';
+import { isError } from 'lodash';
 
 export default function CategoryPage() {
-  const { data, isPending } = useCategories();
+  const { data, isPending,isError } = useCategories();
   const mutation = useCreateCategory();
   const updateStatus = useUpdateStatus();
 
@@ -53,7 +51,7 @@ export default function CategoryPage() {
       console.log('Category name is empty.');
     }
   };
-
+  `z`
   const style = {
     position: 'absolute',
     top: '50%',
@@ -67,6 +65,8 @@ export default function CategoryPage() {
   };
 
   if (isPending) return 'Loading...';
+  if (isError) return 'Error...';
+
 
   return (
     <>
