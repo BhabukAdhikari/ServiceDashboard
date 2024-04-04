@@ -21,9 +21,10 @@ import {
 } from '@mui/material';
 import { useCategories, useCreateCategory, useUpdateCategory } from 'src/hooks/use-categories';
 import { toast } from 'react-toastify';
+import { isError } from 'lodash';
 
 export default function CategoryPage() {
-  const { data, isPending } = useCategories();
+  const { data, isPending,isError } = useCategories();
   const mutation = useCreateCategory();
   const updateMutation = useUpdateCategory();
 
@@ -91,6 +92,8 @@ export default function CategoryPage() {
   };
 
   if (isPending) return 'Loading...';
+  if (isError) return 'Error...';
+
 
   return (
     <>

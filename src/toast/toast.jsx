@@ -1,13 +1,17 @@
-import { Snackbar } from "@mui/material"
-    
-export default function Toast() {
+import { Snackbar } from "@mui/material";
+
+export const Toast = () => {
     return (
         <Snackbar
-            autoHideDuration={6000}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            onDurationChange={10000}
             message="Login Success"
-            action={action}
-            color="success"
-        
+            ContentProps={{
+                sx: {
+                    backgroundColor: 'success.main',
+                },
+            }}
         />
-    )
-}
+
+    );
+};

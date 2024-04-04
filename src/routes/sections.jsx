@@ -6,8 +6,6 @@ import { Outlet, Navigate, useRoutes, useNavigate } from 'react-router-dom';
 import { useAuth } from 'src/useAuth/auth';
 import ServicePage from 'src/pages/services';
 import DashboardLayout from 'src/layouts/dashboard';
-import navConfig from 'src/layouts/dashboard/config-navigation';
-
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
