@@ -1,6 +1,4 @@
-/* eslint no-use-before-define: 0 */ // --> OFF
-
-import { IoIosAdd } from 'react-icons/io';
+import { IoIosAdd, IoMdCut } from 'react-icons/io';
 import React, { useState, useEffect } from 'react';
 
 import {
@@ -21,37 +19,63 @@ import {
   TableContainer,
   Badge,
 } from '@mui/material';
-
-import label from 'src/components/label';
-import { useCategories, useCreateCategory, useUpdateStatus } from 'src/hooks/use-categories';
+import { useCategories, useCreateCategory, useUpdateCategory } from 'src/hooks/use-categories';
 import { toast } from 'react-toastify';
 
 export default function CategoryPage() {
   const { data, isPending } = useCategories();
   const mutation = useCreateCategory();
-  const updateStatus = useUpdateStatus();
+  const updateMutation = useUpdateCategory();
 
   const [open, setOpen] = useState(false);
+  const [editMode, setEditMode] = useState(false);
   const [categoryName, setCategoryName] = useState('');
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [isActive, setIsActive] = useState(true);
+  const [editedCategoryId, setEditedCategoryId] = useState(null);
 
-  const handleAddCategory = async () => {
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    setEditMode(false);
+    setEditedCategoryId(null);
+    setCategoryName('')
+  };
+
+  const handleEdit = (categoryId) => {
+    setOpen(true);
+    setEditMode(true);
+    setEditedCategoryId(categoryId);
+    const categoryToEdit = data.data.find((category) => category.id === categoryId);
+    setCategoryName(categoryToEdit.categoryName);
+    setIsActive(categoryToEdit.isActive);
+  };
+
+  const handleAddOrUpdateCategory = async () => {
     if (categoryName.trim() !== '') {
-      mutation.mutate(categoryName, {
-        onSuccess: () => {
-          setCategoryName('');
-          handleClose();
-          toast.success('Created successfully')
-        },
-        onError: (err) => {
-          toast.error(err?.response?.message || 'error while adding')
-          //fire toast err.message
-        },
-      });
+      try {
+        if (editMode) {
+          await updateCategory(categoryName, editedCategoryId);
+          toast.success('Category updated successfully');
+        } else {
+          await addCategory(categoryName);
+          toast.success('Category added successfully');
+        }
+        setCategoryName('');
+        handleClose();
+      } catch (error) {
+        toast.error(error?.response?.message || 'Error while updating category');
+      }
     } else {
-      console.log('Category name is empty.');
+      toast.error('Category name is empty.');
     }
+  };
+
+  const addCategory = async (name) => {
+    mutation.mutate(name);
+  };
+
+  const updateCategory = async (name, id) => {
+    updateMutation.mutate({ name, id, isActive: isActive });
   };
 
   const style = {
@@ -77,6 +101,7 @@ export default function CategoryPage() {
             Add Categories
           </Button>
         </Stack>
+
         <Modal
           open={open}
           onClose={handleClose}
@@ -84,19 +109,31 @@ export default function CategoryPage() {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <FormControl>
-              <InputLabel htmlFor="my-input">Category Name</InputLabel>
-              <Input
-                id="my-input"
-                aria-describedby="my-helper-text"
-                value={categoryName}
-                onChange={(e) => setCategoryName(e.target.value)}
-              />
-              <FormHelperText id="my-helper-text">Input the category.</FormHelperText>
-            </FormControl>
-            <Button onClick={handleAddCategory} variant="contained">
-              {mutation.isPending ? 'loading..' : 'Add'}
-            </Button>
+            <Stack direction={'column'}>
+              <FormControl>
+                <InputLabel htmlFor="my-input">Category Name</InputLabel>
+                <Input
+                  id="my-input"
+                  aria-describedby="my-helper-text"
+                  value={categoryName}
+                  onChange={(e) => setCategoryName(e.target.value)}
+                />
+                <FormHelperText id="my-helper-text">Input the category.</FormHelperText>
+              </FormControl>
+              {editedCategoryId && (
+                <>
+                  <InputLabel htmlFor="my-input">Status</InputLabel>
+                  <Switch
+                    value={isActive}
+                    defaultChecked={isActive}
+                    onChange={() => setIsActive((prev) => !prev)}
+                  />
+                </>
+              )}
+              <Button onClick={handleAddOrUpdateCategory} variant="contained">
+                {editMode ? 'Update' : 'Add'}
+              </Button>
+            </Stack>
           </Box>
         </Modal>
       </Stack>
@@ -106,6 +143,7 @@ export default function CategoryPage() {
             <TableRow>
               <TableCell>Category Name</TableCell>
               <TableCell>isActive</TableCell>
+              <TableCell>Edit</TableCell>
             </TableRow>
             <TableBody>
               {data?.data?.map((category, index) => (
@@ -113,7 +151,16 @@ export default function CategoryPage() {
                   <TableCell>{category.categoryName}</TableCell>
                   <TableCell>
                     <Badge color="error">{category.isActive ? 'Active' : 'InActive'}</Badge>
-                    {/* <Switch {...label} checked={category.isActive} size="small" /> */}
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      onClick={() => handleEdit(category.id)}
+                      startIcon={<IoMdCut size={20}/>}
+                      variant="contained"
+                    >
+                      Edit
+
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
