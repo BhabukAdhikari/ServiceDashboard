@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
@@ -10,19 +9,15 @@ import Typography from '@mui/material/Typography';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import { Box, Input, Modal, Switch, InputLabel, FormControl } from '@mui/material';
-
-import { services as servicesData } from 'src/_mock/services'; 
-
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
-
 import TableNoData from '../table-no-data';
-import TableEmptyRows from '../table-empty-rows';
+// import TableEmptyRows from '../table-empty-rows';
 import ServiceTableRow from '../services-table-row';
 import ServiceTableHead from '../services-table-head';
 import ServiceTableToolbar from '../services-table-toolbar';
-import { emptyRows, applyFilter, getComparator } from '../utils';
-
+import { useCreateService, useServices } from 'src/hooks/use-services';
+import { toast } from 'react-toastify';
 export default function ServicePage() {
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
@@ -30,8 +25,10 @@ export default function ServicePage() {
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [services, setServices] = useState(servicesData);
+  const [services, setServices] = useState('');
 
+  const { isLoading, isError, data } = useServices();
+  const mutation = useCreateService();
   const handleSort = (event, id) => {
     const isAsc = orderBy === id && order === 'asc';
     if (id !== '') {
@@ -39,7 +36,6 @@ export default function ServicePage() {
       setOrderBy(id);
     }
   };
-
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelecteds = services.map((n) => n.servicename);
@@ -48,7 +44,6 @@ export default function ServicePage() {
     }
     setSelected([]);
   };
-
   const handleClick = (event, servicename) => {
     const selectedIndex = selected.indexOf(servicename);
     let newSelected = [];
@@ -66,22 +61,28 @@ export default function ServicePage() {
     }
     setSelected(newSelected);
   };
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
   const handleChangeRowsPerPage = (event) => {
     setPage(0);
     setRowsPerPage(parseInt(event.target.value, 10));
   };
-
   const handleFilterByName = (event) => {
     setPage(0);
     setFilterName(event.target.value);
   };
-
-  const handleAddService = () => {
+  const handleAddService = async () => {
+    mutation.mutate((serviceName), {
+      onSuccess: () => {
+        setServices((prevServices) => [...prevServices, serviceName]);
+        setServiceName('');
+        handleClose();
+        toast.success('Added Successfully')
+      }, onError: (err) => {
+        toast.error(err?.response?.message || 'error while adding')
+      },
+    })
     if (serviceName.trim() !== '') {
       const newService = { id: services.length + 1, servicename: serviceName, avatarUrl: '' };
       setServices((prevServices) => [...prevServices, newService]);
@@ -89,14 +90,13 @@ export default function ServicePage() {
       handleClose();
     }
   };
+  // const dataFiltered = applyFilter({
+  //   // inputData: servic es,
+  //   comparator: getComparator(order, orderBy),
+  //   filterName,
+  // });
 
-  const dataFiltered = applyFilter({
-    inputData: services,
-    comparator: getComparator(order, orderBy),
-    filterName,
-  });
-
-  const notFound = !dataFiltered.length && !!filterName;
+  // const notFound = !dataFiltered.length && !!filterName;
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -113,14 +113,15 @@ export default function ServicePage() {
     p: 4,
   };
   const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
   const [serviceName, setServiceName] = useState('');
+
+  if (isLoading) return 'Loading...'
+  if (isError) return 'Error...'
 
   return (
     <Container>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <Typography variant="h4">Services</Typography>
-
         <Button
           variant="contained"
           onClick={handleOpen}
@@ -154,14 +155,12 @@ export default function ServicePage() {
           </Box>
         </Modal>
       </Stack>
-
       <Card>
         <ServiceTableToolbar
           numSelected={selected.length}
           filterName={filterName}
           onFilterName={handleFilterByName}
         />
-
         <Scrollbar>
           <TableContainer sx={{ overflow: 'unset' }}>
             <Table sx={{ minWidth: 800 }}>
@@ -175,27 +174,26 @@ export default function ServicePage() {
                 headLabel={[{ id: 'servicename', label: 'Service Name' }]}
               />
               <TableBody>
-                {dataFiltered
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => (
+                {data?.data.map((services) => {
+                  console.log(data);
+                  return (
                     <ServiceTableRow
-                      key={row.id}
-                      servicename={row.servicename}
-                      avatarUrl={row.avatarUrl}
+                      key={services.id}
+                      servicename={services.serviceName}
+                      avatarUrl={services.avatarUrl}
                       handleClick={(event) => handleClick(event, row.name)}
                     />
-                  ))}
-
-                <TableEmptyRows
+                  )
+                })}
+                {/* <TableEmptyRows
                   height={77}
                   emptyRows={emptyRows(page, rowsPerPage, services.length)}
-                />
-                {notFound && <TableNoData query={filterName} />}
+                /> */}
+                {/* {notFound && <TableNoData />} */}
               </TableBody>
             </Table>
           </TableContainer>
         </Scrollbar>
-
         <TablePagination
           page={page}
           component="div"

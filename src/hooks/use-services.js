@@ -16,7 +16,7 @@ export const useCreateService = () => {
 }
 
 export const useUpdateService = () => {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (serviceName, id) => await api.put(`/services/${id}`, { name: serviceName }),
     onSuccess: () => {
@@ -26,9 +26,9 @@ export const useUpdateService = () => {
 }
 
 export const useDeleteService = () => {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (id) => await api.delete(`/services/${id}`, { id }),
+    mutationFn: async (id) => await api.delete(`/services/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['services'] });
     }

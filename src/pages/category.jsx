@@ -1,5 +1,5 @@
 import { IoIosAdd, IoMdCut } from 'react-icons/io';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import {
   Box,
@@ -21,7 +21,6 @@ import {
 } from '@mui/material';
 import { useCategories, useCreateCategory, useUpdateCategory } from 'src/hooks/use-categories';
 import { toast } from 'react-toastify';
-import { isError } from 'lodash';
 
 export default function CategoryPage() {
   const { data, isPending,isError } = useCategories();
@@ -143,10 +142,10 @@ export default function CategoryPage() {
       <TableContainer component={Paper}>
         <Box sx={{ overflowX: 'auto' }}>
           <Table sx={{ minWidth: '800px' }}>
-            <TableRow>
-              <TableCell>Category Name</TableCell>
-              <TableCell>isActive</TableCell>
-              <TableCell>Edit</TableCell>
+            <TableRow  >
+              <TableCell sx={{ fontWeight: 'bold', fontSize: '18px' }}>Category Name</TableCell>
+              <TableCell sx={{ fontWeight: 'bold', fontSize: '18px' }}>isActive</TableCell>
+              <TableCell sx={{ fontWeight: 'bold', fontSize: '18px' }}>Edit</TableCell>
             </TableRow>
             <TableBody>
               {data?.data?.map((category, index) => (
@@ -162,7 +161,6 @@ export default function CategoryPage() {
                       variant="contained"
                     >
                       Edit
-
                     </Button>
                   </TableCell>
                 </TableRow>
