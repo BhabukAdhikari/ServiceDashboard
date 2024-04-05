@@ -1,0 +1,83 @@
+.root {
+  position: relative;
+  width: 445px;
+  /* height: 708px; */
+  align-items: flex-start;
+}
+.frame26 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  align-items: flex-start;
+  background-color: #39ac92;
+  overflow: hidden;
+}
+.serviceChaiyo {
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: Kanit, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 34px;
+  top: 15px;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.beSupplierToExpandYourServiceA {
+  color: #fff;
+  font-size: 15px;
+  font-family: Kanit, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 18px;
+  top: 269px;
+  width: 408px;
+  height: min-content;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+.welcome {
+  color: #fff;
+  font-size: 50px;
+  font-weight: bold;
+  font-family: Kanit, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 106px;
+  top: 176px;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.rectangle6 {
+  position: absolute;
+  left: 94px;
+  top: 369px;
+  width: 256px;
+  height: 65px;
+  outline: solid 1px #fff;
+  outline-offset: -1px;
+  border-radius: 41px;
+}
+.signUp {
+  color: #fff;
+  font-size: 30px;
+  font-family: Kanit, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 171px;
+  top: 379px;
+  width: min-content;
+  height: min-content;
+  text-align: center;
+  align-items: center;
+  white-space: nowrap;
+  flex-direction: column;
+}

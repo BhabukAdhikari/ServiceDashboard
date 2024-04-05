@@ -1,0 +1,279 @@
+.root {
+  position: relative;
+  width: 972px;
+  height: 620px;
+  align-items: flex-start;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.rectangle1 {
+  opacity: 0.3;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 347px;
+  height: 620px;
+  background-color: #1e1e1e;
+}
+.beSupplier {
+  position: absolute;
+  left: 29px;
+  top: 33px;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.textBlock {
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+}
+.textBlock2 {
+  margin-top: 0;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+}
+.spreadYourServiceThroughOnine {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 300;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 29px;
+  top: 119px;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.serviceChaiyo {
+  color: #fff;
+  font-size: 15px;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 32px;
+  top: 578px;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.register {
+  color: #000;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 424px;
+  top: 26px;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.companyName {
+  color: #000;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 424px;
+  top: 75px;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.rectangle2 {
+  position: absolute;
+  left: 424px;
+  top: 109px;
+  width: 211px;
+  height: 36px;
+  outline: solid 1px #000;
+  outline-offset: -1px;
+}
+.address {
+  color: #000;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 690px;
+  top: 75px;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.rectangle3 {
+  position: absolute;
+  left: 690px;
+  top: 109px;
+  width: 211px;
+  height: 36px;
+  outline: solid 1px #000;
+  outline-offset: -1px;
+}
+.phone {
+  color: #000;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 424px;
+  top: 174px;
+  width: 233px;
+  height: min-content;
+  flex-direction: column;
+}
+.rectangle4 {
+  position: absolute;
+  left: 424px;
+  top: 203px;
+  width: 482px;
+  height: 36px;
+  outline: solid 1px #000;
+  outline-offset: -1px;
+}
+.panNumber {
+  color: #000;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 424px;
+  top: 272px;
+  width: 233px;
+  height: min-content;
+  flex-direction: column;
+}
+.rectangle5 {
+  position: absolute;
+  left: 424px;
+  top: 301px;
+  width: 482px;
+  height: 36px;
+  outline: solid 1px #000;
+  outline-offset: -1px;
+}
+.establishedDate {
+  color: #000;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 424px;
+  top: 370px;
+  width: 233px;
+  height: min-content;
+  flex-direction: column;
+}
+.rectangle6 {
+  position: absolute;
+  left: 424px;
+  top: 399px;
+  width: 482px;
+  height: 36px;
+  outline: solid 1px #000;
+  outline-offset: -1px;
+}
+.category {
+  color: #000;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 424px;
+  top: 456px;
+  width: 78px;
+  height: min-content;
+  flex-direction: column;
+}
+.rectangle8 {
+  position: absolute;
+  left: 424px;
+  top: 485px;
+  width: 482px;
+  height: 36px;
+  outline: solid 1px #000;
+  outline-offset: -1px;
+}
+.none {
+  color: #000;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 647px;
+  top: 495px;
+  width: 60px;
+  height: min-content;
+  flex-direction: column;
+}
+.rectangle7 {
+  position: absolute;
+  left: 760px;
+  top: 558px;
+  width: 146px;
+  height: 39px;
+  border-radius: 23px;
+  background-color: #000;
+}
+.create {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  position: absolute;
+  left: 811px;
+  top: 570px;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+.line1 {
+  position: absolute;
+  left: 609px;
+  top: 504px;
+  width: 25.02px;
+  max-width: 100%;
+  height: 0;
+  max-height: 100%;
+  border-bottom: solid 1px #000;
+  margin-bottom: -1px;
+}
+.line2 {
+  position: absolute;
+  left: 694px;
+  top: 504px;
+  width: 25.02px;
+  max-width: 100%;
+  height: 0;
+  max-height: 100%;
+  border-bottom: solid 1px #000;
+  margin-bottom: -1px;
+}
+
+.info{
+  margin-top: -40px;
+}

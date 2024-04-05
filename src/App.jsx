@@ -1,10 +1,11 @@
 import React from 'react'
-import SupplierDashboard from './Dashboard/SupplierDashboard'
+import Hero from './Hero/components/Hero'
+
 
 const App = () => {
   return (
     <div>
- <SupplierDashboard/>
+<Hero/>
     </div>
   )
 }
