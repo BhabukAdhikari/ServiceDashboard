@@ -18,18 +18,8 @@ export const useCreateCategory = () => {
 export const useUpdateCategory = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (categoryName, id) =>
-      await api.put(`/categories/${id}`, { name: categoryName }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['categories'] });
-    },
-  });
-};
-
-export const useUpdateStatus = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: async (status, id) => await api.post(`/categories/${id}`, { status: status }),
+    mutationFn: async ({categoryName, id , isActive}) =>
+      await api.put(`/categories/${id}`, { categoryName , isActive }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['categories'] });
     },

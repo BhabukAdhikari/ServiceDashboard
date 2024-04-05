@@ -15,22 +15,27 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
-    title: 'services',
+    title: 'user management',
+    path: '/user',
+    icon: icon('ic_user'),
+  },
+  {
+    title: 'services management',
     path: '/services',
     icon: icon('ic_user'),
   },
   {
-    title: 'category',
+    title: 'category management',
     path: '/category',
     icon: icon('ic_user'),
   },
   {
-    title: 'product',
+    title: 'product management',
     path: '/products',
     icon: icon('ic_cart'),
   },
   {
-    title: 'blog',
+    title: 'blog management',
     path: '/blog',
     icon: icon('ic_blog'),
   },

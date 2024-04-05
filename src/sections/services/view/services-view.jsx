@@ -12,11 +12,10 @@ import { Box, Input, Modal, Switch, InputLabel, FormControl } from '@mui/materia
 import Iconify from 'src/components/iconify';
 import Scrollbar from 'src/components/scrollbar';
 import TableNoData from '../table-no-data';
-import TableEmptyRows from '../table-empty-rows';
+// import TableEmptyRows from '../table-empty-rows';
 import ServiceTableRow from '../services-table-row';
 import ServiceTableHead from '../services-table-head';
 import ServiceTableToolbar from '../services-table-toolbar';
-import { emptyRows, applyFilter, getComparator } from '../utils';
 import { useCreateService, useServices } from 'src/hooks/use-services';
 import { toast } from 'react-toastify';
 export default function ServicePage() {
@@ -186,11 +185,11 @@ export default function ServicePage() {
                     />
                   )
                 })}
-                <TableEmptyRows
+                {/* <TableEmptyRows
                   height={77}
                   emptyRows={emptyRows(page, rowsPerPage, services.length)}
-                />
-                {/* {notFound && <TableNoData query={filterName} />} */}
+                /> */}
+                {/* {notFound && <TableNoData />} */}
               </TableBody>
             </Table>
           </TableContainer>

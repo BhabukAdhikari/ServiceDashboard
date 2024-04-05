@@ -6,6 +6,8 @@ import { Outlet, Navigate, useRoutes, useNavigate } from 'react-router-dom';
 import { useAuth } from 'src/useAuth/auth';
 import ServicePage from 'src/pages/services';
 import DashboardLayout from 'src/layouts/dashboard';
+import UserPage from 'src/pages/user';
+
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
@@ -21,9 +23,7 @@ export default function Router() {
   useEffect(() => {
     if (!token) {
       navigate('/login')
-    } else {
-      navigate('/')
-    }
+    } 
   }, [token])
 
   const publicRoutes = [
@@ -56,6 +56,7 @@ export default function Router() {
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
         { path: 'category', element: <CategoryPage /> },
+        { path: 'user', element: <UserPage /> },
       ],
     }
   ];
