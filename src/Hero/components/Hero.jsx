@@ -1,18 +1,13 @@
-import React from 'react'
-import { Frame27 } from './Frame27/Frame27'
-import './Hero.css'
-import SignUpPage from '../../Auth-Page/SignUpPage'
+import React from "react";
+import { Frame27 } from "./Frame27/Frame27";
+import "./Hero.css";
 
 const Hero = () => {
   return (
-    <div className='hero-container'>
-        <Frame27/>
-        
-        <div className="signUp">
-        <SignUpPage/>
-        </div>
+    <div className="hero-container">
+      <Frame27 />
     </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
